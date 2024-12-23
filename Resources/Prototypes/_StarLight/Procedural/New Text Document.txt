@@ -1,0 +1,9 @@
+salv impossible stuff I deleted:
+- type: salvageDifficulty
+  id: Impossible
+  lootPrototype: "SalvageLootImpossible"
+  lootBudget: 675
+  mobBudget: 463
+  modifierBudget: 1
+  color: "#DE3A3A96"
+  recommendedPlayers: 6
