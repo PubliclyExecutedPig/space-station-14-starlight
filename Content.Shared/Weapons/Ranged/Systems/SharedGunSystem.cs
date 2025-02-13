@@ -184,9 +184,9 @@ public abstract partial class SharedGunSystem : EntitySystem
         gunEntity = default;
         gunComp = null;
 
-        if (TryComp<MechComponent>(entity, out var mech) &&
-            mech.CurrentSelectedEquipment.HasValue &&
-            TryComp<GunComponent>(mech.CurrentSelectedEquipment.Value, out var mechGun))
+        if (TryComp<MechComponent>(entity, out var mech) 
+            && mech.CurrentSelectedEquipment.HasValue 
+            && TryComp<GunComponent>(mech.CurrentSelectedEquipment.Value, out var mechGun))
         {
             gunEntity = mech.CurrentSelectedEquipment.Value;
             gunComp = mechGun;
@@ -546,7 +546,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             return;
 
         var ev = new MuzzleFlashEvent(GetNetEntity(gun), sprite, worldAngle);
-        CreateEffect(gun, ev, gun);
+        CreateEffect(gun, ev, user);
     }
 
     public void CauseImpulse(EntityCoordinates fromCoordinates, EntityCoordinates toCoordinates, EntityUid user, PhysicsComponent userPhysics)

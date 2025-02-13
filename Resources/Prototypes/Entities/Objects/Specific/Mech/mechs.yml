@@ -37,6 +37,34 @@
     equipmentWhitelist:
       tags:
       - SmallMech
+      
+- type: entity
+  id: NanotrasenMech
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Mech
+    firstStart: true
+    lowPowerSound:
+      path: /Audio/Mecha/lowpowernano.ogg
+    nominalSound:
+      path: /Audio/Mecha/nominalnano.ogg
+      
+- type: entity
+  id: SyndieMech
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Mech
+    firstStart: true
+    lowPowerSound:
+      path: /Audio/Mecha/lowpowersyndi.ogg
+    nominalSound:
+      path: /Audio/Mecha/nominalsyndi.ogg
+    nominalLongSound:
+      path: /Audio/Mecha/longsyndiactivation.ogg
+    criticalDamageSound:
+      path: /Audio/Mecha/critdestrsyndi.ogg
 
 - type: entity
   id: BaseMech
@@ -123,6 +151,7 @@
       mech-pilot-slot: !type:ContainerSlot
       mech-equipment-container: !type:Container
       mech-battery-slot: !type:ContainerSlot
+      mech-gas-tank-slot: !type:ContainerSlot
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: LightArmor
@@ -146,9 +175,15 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: PointLight
-    enabled: false
-    radius: 8
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 6
     energy: 5
+    enabled: false
+  - type: PowerCellDraw
+    enabled: false
+    drawRate: 2
+    useRate: 0
 
 # Ripley MK-I
 - type: entity
@@ -160,17 +195,17 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/mecha.rsi
+    sprite: Objects/Specific/Mech/Mechs/Basic/ripley.rsi
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
-      state: ripley
+      state: base
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
   - type: Mech
-    baseState: ripley
-    openState: ripley-open
-    brokenState: ripley-broken
+    baseState: base
+    openState: base-open
+    brokenState: base-broken
     mechToPilotDamageMultiplier: 0.75
     pilotWhitelist:
       components:
@@ -205,17 +240,17 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/mecha.rsi
+    sprite: Objects/Specific/Mech/Mechs/Basic/ripleymkii.rsi
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
-      state: ripleymkii
+      state: base
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
   - type: Mech
-    baseState: ripleymkii
-    openState: ripleymkii-open
-    brokenState: ripleymkii-broken
+    baseState: base
+    openState: base-open
+    brokenState: base-broken
     mechToPilotDamageMultiplier: 0.4
     airtight: true
     pilotWhitelist:
@@ -253,17 +288,17 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/mecha.rsi
+    sprite: Objects/Specific/Mech/Mechs/Basic/clarke.rsi
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
-      state: clarke
+      state: base
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
   - type: Mech
-    baseState: clarke
-    openState: clarke-open
-    brokenState: clarke-broken
+    baseState: base
+    openState: base-open
+    brokenState: base-broken
     mechToPilotDamageMultiplier: 0.5
     airtight: true
     pilotWhitelist:
@@ -301,19 +336,19 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/mecha.rsi
+    sprite: Objects/Specific/Mech/Mechs/Basic/honker.rsi
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
-      state: honker
+      state: base
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepClown
       params:
         variation: 0.17
   - type: Mech
-    baseState: honker
-    openState: honker-open
-    brokenState: honker-broken
+    baseState: base
+    openState: base-open
+    brokenState: base-broken
     mechToPilotDamageMultiplier: 0.5
     airtight: true # Space Honks is real.
     pilotWhitelist:
@@ -351,17 +386,17 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/mecha.rsi
+    sprite: Objects/Specific/Mech/Mechs/Basic/hamtr.rsi
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
-      state: hamtr
+      state: base
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
   - type: Mech
-    baseState: hamtr
-    openState: hamtr-open
-    brokenState: hamtr-broken
+    baseState: base
+    openState: base-open
+    brokenState: base-broken
     mechToPilotDamageMultiplier: 0.2
     maxEquipmentAmount: 2
     airtight: true
@@ -400,10 +435,10 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/mecha.rsi
+    sprite: Objects/Specific/Mech/Mechs/Basic/vim.rsi
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
-      state: vim
+      state: base
   - type: Fixtures
     fixtures:
       fix1:
@@ -421,9 +456,9 @@
       params:
         volume: -10
   - type: Mech
-    baseState: vim
-    openState: vim-open
-    brokenState: vim-broken
+    baseState: base
+    openState: base-open
+    brokenState: base-broken
     maxEquipmentAmount: 0
     # keep mouse safe
     mechToPilotDamageMultiplier: 0.1
@@ -469,17 +504,17 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/mecha.rsi
+    sprite: Objects/Specific/Mech/Mechs/Basic/gygax.rsi
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
-      state: gygax
+      state: base
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
   - type: Mech
-    baseState: gygax
-    openState: gygax-open
-    brokenState: gygax-broken
+    baseState: base
+    openState: base-open
+    brokenState: base-broken
     mechToPilotDamageMultiplier: 0.3
     airtight: true
     pilotWhitelist:
@@ -516,17 +551,17 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/mecha.rsi
+    sprite: Objects/Specific/Mech/Mechs/Basic/durand.rsi
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
-      state: durand
+      state: base
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
   - type: Mech
-    baseState: durand
-    openState: durand-open
-    brokenState: durand-broken
+    baseState: base
+    openState: base-open
+    brokenState: base-broken
     mechToPilotDamageMultiplier: 0.25
     airtight: true
     maxIntegrity: 400
@@ -566,7 +601,7 @@
 # Marauder
 - type: entity
   id: MechMarauder
-  parent: [ BaseMech, CombatMech, BaseCentcommContraband ]
+  parent: [ BaseMech, CombatMech, BaseCentcommContraband, NanotrasenMech ]
   name: Marauder
   description: Looks like we're all saved. # ERT mech
   components:
@@ -634,7 +669,7 @@
 # Seraph
 - type: entity
   id: MechSeraph
-  parent: [ BaseMech, CombatMech, BaseCentcommContraband ]
+  parent: [ BaseMech, CombatMech, BaseCentcommContraband, NanotrasenMech ]
   name: Seraph
   description: That's the last thing you'll see. # Death Squad mech
   components:
@@ -705,7 +740,7 @@
 # Dark Gygax
 - type: entity
   id: MechGygaxSyndie
-  parent: [ BaseMech, CombatMech, BaseSyndicateContraband ]
+  parent: [ BaseMech, CombatMech, BaseSyndicateContraband, SyndieMech ]
   name: Dark Gygax
   description: A modified Gygax used for nefarious purposes. On the back of the armor plate there is an inscription "Cybersun Inc."
   components:
@@ -773,7 +808,7 @@
 # Mauler
 - type: entity
   id: MechMaulerSyndie
-  parent: [ BaseMech, CombatMech, BaseSyndicateContraband ]
+  parent: [ BaseMech, CombatMech, BaseSyndicateContraband, SyndieMech ]
   name: Mauler
   description: A modified Marauder used by the Syndicate that's not as maneuverable as the Dark Gygax, but it makes up for that in armor and sheer firepower. On the back of the armor plate there is an inscription "Cybersun Inc."
   components:
