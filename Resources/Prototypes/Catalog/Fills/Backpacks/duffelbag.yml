@@ -110,12 +110,13 @@
       - id: WeaponRifleM90GrenadeLauncher
       - id: MagazineRifleFMJ
         amount: 2
-      - id: GrenadeBlast
-        amount: 2
-      - id: GrenadeFlash
-        amount: 2
-      - id: GrenadeFrag
-        amount: 2
+      #- id: GrenadeBlast
+      #  amount: 2
+      #- id: GrenadeFlash
+      #  amount: 2
+      #- id: GrenadeFrag
+      #  amount: 2
+      #temp removed because it doesnt shoot grenades yet
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateAmmo
@@ -128,6 +129,8 @@
       - id: MagazinePistolSubMachineGunSP
         amount: 4
       - id: MagazineShotgun
+        amount: 4
+      - id: MagazineRifleFMJ
         amount: 4
       - id: MagazineLightRifleBoxSP
         amount: 3

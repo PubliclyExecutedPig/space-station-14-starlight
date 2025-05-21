@@ -185,6 +185,20 @@
     Telecrystal: 20
   categories:
   - UplinkWeaponry
+  
+- type: listing
+  id: UplinkC20RBundle
+  name: M-90 Bundle
+  description: uplink-c20r-bundle-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateFilledCarbine
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 17
+  cost:
+    Telecrystal: 20
+  categories:
+  - UplinkWeaponry
 
 - type: listing
   id: UplinkGrenadeLauncherBundle
