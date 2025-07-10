@@ -1,0 +1,48 @@
+- type: entity
+  name: energy mace
+  parent: [BaseMeleeWeaponEnergy, BaseSyndicateContraband]
+  id: EnergyMace
+  description: A very loud & dangerous mace, held together by raw energy. Smashes through anyone daring enough to stand in the way.
+  components:
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnHit: block_metal1.ogg
+    path: /Audio/Weapons/
+    params:
+      variation: 0.250
+      activatedSoundOnHitNoDamage:
+      path: /Audio/Weapons/block_metal1.ogg
+      params:
+        variation: 0.250
+        volume: -10
+    activatedSoundOnSwing:
+      path: /Audio/Weapons/eblademiss.ogg
+      params:
+        variation: 0.125
+    activatedDamage:
+      types:
+        Pierce: 5
+        Blunt: 20
+        Heat: 10
+        Structural: 30
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/e-mace.rsi
+    layers:
+    - state: e-mace
+    - state: e-mace-active
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Melee/e-mace-inhands.rsi
+  - type: PointLight
+    enabled: false
+    radius: 2
+    energy: 2
+    color: red
+    netsync: false
+  - type: ItemTogglePointLight
+    toggleableVisualsColorModulatesLights: false
+  - type: ToggleableVisuals # Add support for multiple layers
+    spriteLayer: on
+    inhandVisuals:
+      left:
+      - state: inhand-left-on
+      right:
+      - state: inhand-right-on
